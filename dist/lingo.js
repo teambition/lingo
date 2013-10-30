@@ -10,18 +10,18 @@
  * @type String
  */
 (function () {
-  var lingo = function (str, num, lang) {
+  var lingo = function (str, plural, lang) {
     var tool = lingo[lang];
     if (!(tool instanceof Language)) {
       tool = lingo.en;
     }
-    if (num > 1) {
+    if (plural > 1 || plural === true) {
       return tool.isPlural(str) ? str : tool.pluralize(str);
     } else {
       return tool.isSingular(str) ? str : tool.singularize(str);
     }
   };
-  lingo.version = '0.0.5';
+  lingo.version = '0.0.6';
 
   /**
    * Expose `Language`.
@@ -37,7 +37,7 @@
    * @api public
    */
 
-  lingo.Language = function Language(code, name) {
+  var Language = lingo.Language = function(code, name) {
     this.code = code;
     this.name = name;
     this.translations = {};
@@ -453,8 +453,9 @@
    * @api public
    */
 
-  lingo.camelcase = function(str, uppercaseFirst){
-    return str.replace(/[^\w\d ]+/g, '').split(' ').map(function(word, i){
+  lingo.camelcase = function(str, uppercaseFirst, split){
+    split = split || ' ';
+    return str.replace(/[^\S]+/g, ' ').split(split).map(function(word, i){
       if (i || (0 == i && uppercaseFirst)) {
         word = lingo.capitalize(word);
       }
