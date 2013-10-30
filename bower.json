@@ -1,0 +1,16 @@
+{
+  "name": "lingo",
+  "main": "dist/lingo.js",
+  "version": "0.0.5",
+  "homepage": "https://github.com/teambition/lingo",
+  "authors": "TJ Holowaychuk <tj@vision-media.ca>",
+  "description": "linguistics module sporting inflection and more",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
